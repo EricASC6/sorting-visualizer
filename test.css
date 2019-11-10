@@ -16,6 +16,23 @@ body {
 .visualizer {
   min-width: 100vw;
   min-height: 700px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.visualizer #array {
+  min-height: 100%;
+  min-width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.visualizer #array .bar {
+  background-color: blue;
+  margin: 0 1px;
 }
 
 .sorting-algos {
