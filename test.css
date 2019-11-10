@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(237, 254, 253);
+}
+
+.container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.visualizer {
+  min-width: 100vw;
+  min-height: 700px;
+}
+
+.sorting-algos {
+  margin-bottom: 30px;
+}
