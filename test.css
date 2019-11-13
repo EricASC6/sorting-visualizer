@@ -32,7 +32,7 @@ body {
 
 .visualizer #array .bar {
   background-color: blue;
-  margin: 0 1px;
+  /* margin: 0 1px; */
 }
 
 .sorting-algos {

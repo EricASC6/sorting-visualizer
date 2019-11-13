@@ -1,8 +1,5 @@
-// div where the bars will be sorted and placed in
-const array = document.querySelector("#array");
-
 // constant vars for bar dimensions
-NUM_BARS = 300;
+NUM_BARS = 150;
 BAR_WIDTH = 2;
 MIN_BAR_HEIGHT = 5;
 
@@ -20,21 +17,28 @@ const generateArray = (size, start, increment) => {
 
 // creates a sorted array and places it on the .array div
 const newArrayBtn = document.querySelector("#new-array");
-const visualizeBars = (arr, canvas, width) => {
-  canvas.innerHTML = "";
-  arr.forEach(height => {
-    let bar = document.createElement("div");
-    bar.className = "bar";
-    canvas.appendChild(bar);
-    bar.style.height = `${height}px`;
-    bar.style.width = `${width}px`;
-  });
+const visualizeBars = (arr, width) => {
+  let array = document.querySelector("#array");
+  if (array.innerHTML === "") {
+    arr.forEach(height => {
+      let bar = document.createElement("div");
+      bar.className = "bar";
+      array.appendChild(bar);
+      bar.style.height = `${height}px`;
+      bar.style.width = `${width}px`;
+    });
+  } else {
+    const bars = array.querySelectorAll(".bar");
+    arr.forEach((height, i) => {
+      bars[i].style.height = `${height}px`;
+    });
+  }
 };
 
 newArrayBtn.addEventListener("click", () => {
   let sortedArray = generateArray(NUM_BARS, MIN_BAR_HEIGHT, BAR_WIDTH);
   console.log(sortedArray);
-  visualizeBars(sortedArray, array, BAR_WIDTH);
+  visualizeBars(sortedArray, BAR_WIDTH);
 });
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -65,9 +69,8 @@ function shuffle() {
 
       // And swap it with the current element.
       swap(arr, currentIndex, randomIndex);
-      visualizeBars(arr, array, BAR_WIDTH);
+      visualizeBars(arr, BAR_WIDTH);
       requestAnimationFrame(shuffleHelper);
-      console.log(currentIndex);
     } else {
       cancelAnimationFrame(shuffleId);
     }
@@ -80,5 +83,24 @@ const shuffleBtn = document.querySelector("#shuffle");
 shuffleBtn.addEventListener("click", () => {
   shuffle();
 });
+
+const sortingFinisher = () => {
+  let i = 0;
+  let bars = document.querySelectorAll(".bar");
+  console.log(bars);
+  let arr = Array.from(bars).map(elem => elem.clientHeight);
+  console.log(arr);
+
+  let finisherId = requestAnimationFrame(sortingFinisherHelper);
+  function sortingFinisherHelper() {
+    if (i < arr.length) {
+      bars[i].style.backgroundColor = "green";
+      i++;
+      requestAnimationFrame(sortingFinisherHelper);
+    } else {
+      cancelAnimationFrame(finisherId);
+    }
+  }
+};
 
 // RESEARCH requestAnimationFrame !!!!!
