@@ -23,21 +23,38 @@ function swap(arr, i, j) {
 // let sortedArr = bSort(arr);
 // console.log(sortedArr);
 
-let arr = [8, 9, 10, 4, 1, 77, 100, 5, 7, 1, 1, 5, 89, 34, 21, 65];
+let arr = [78, 1000, 8, 9, 10, 4, 1, 77, 100, 5, 7, 1, 1, 5, 89, 34, 21, 65];
 
-function insertionSort(arr) {
-  for (let i = 1; i < arr.length; i++) {
-    for (let j = i; j > 0; j--) {
-      if (arr[j] < arr[j - 1]) {
-        swap(arr, j, j - 1);
-      } else {
-        break;
-      }
+// function insertionSort(arr) {
+//   for (let i = 1; i < arr.length; i++) {
+//     for (let j = i; j > 0; j--) {
+//       if (arr[j] < arr[j - 1]) {
+//         swap(arr, j, j - 1);
+//       } else {
+//         break;
+//       }
+//     }
+//   }
+
+//   return arr;
+// }
+
+function selectionSort(arr) {
+  let currentMin = 0;
+  let index = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = index; j < arr.length; j++) {
+      if (arr[j] < arr[currentMin]) currentMin = j;
     }
+
+    swap(arr, index, currentMin);
+    index++;
+    currentMin = index;
   }
 
   return arr;
 }
 
-let sortedArr = insertionSort(arr);
+let sortedArr = selectionSort(arr);
 console.log(sortedArr);
