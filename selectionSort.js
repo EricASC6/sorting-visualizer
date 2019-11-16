@@ -3,7 +3,7 @@ const selectionSortBtn = document.querySelector("#selection-sort");
 const selectionSort = () => {
   let bars = document.querySelectorAll(".bar");
   let arr = Array.from(bars).map(elem => elem.clientHeight);
-  let delay = 0;
+  let delay = 50;
   let currentMin = 0;
   let index = 0;
 
@@ -18,7 +18,7 @@ const selectionSort = () => {
         visualizeBars(arr, BAR_WIDTH);
         index++;
         currentMin = index;
-      }, (delay += 50));
+      }, i * delay);
     }
   };
 

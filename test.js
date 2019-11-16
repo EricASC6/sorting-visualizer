@@ -1,7 +1,7 @@
 // constant vars for bar dimensions
 NUM_BARS = 100;
 BAR_WIDTH = 2;
-MIN_BAR_HEIGHT = 5;
+MIN_BAR_HEIGHT = 25;
 
 // func that generates a sorted array
 const generateArray = (size, start, increment) => {
@@ -37,7 +37,7 @@ const visualizeBars = (arr, width) => {
 
 newArrayBtn.addEventListener("click", () => {
   let sortedArray = generateArray(NUM_BARS, MIN_BAR_HEIGHT, BAR_WIDTH);
-  let b = generateArray(NUM_BARS, 6, BAR_WIDTH);
+  let b = generateArray(NUM_BARS, 30, BAR_WIDTH);
   console.log(sortedArray);
   visualizeBars([...sortedArray, ...b], BAR_WIDTH);
 });
@@ -76,8 +76,6 @@ function shuffle() {
       cancelAnimationFrame(shuffleId);
     }
   }
-
-  return array;
 }
 
 const shuffleBtn = document.querySelector("#shuffle");
