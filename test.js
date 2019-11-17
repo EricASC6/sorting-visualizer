@@ -1,7 +1,7 @@
 // constant vars for bar dimensions
-NUM_BARS = 150;
+NUM_BARS = 100;
 BAR_WIDTH = 2;
-MIN_BAR_HEIGHT = 25;
+MIN_BAR_HEIGHT = 5;
 
 // func that generates a sorted array
 const generateArray = (size, start, increment) => {
@@ -37,9 +37,8 @@ const visualizeBars = (arr, width) => {
 
 newArrayBtn.addEventListener("click", () => {
   let sortedArray = generateArray(NUM_BARS, MIN_BAR_HEIGHT, BAR_WIDTH);
-  let b = generateArray(NUM_BARS, 30, BAR_WIDTH);
   console.log(sortedArray);
-  visualizeBars([...sortedArray, ...b], BAR_WIDTH);
+  visualizeBars(sortedArray, BAR_WIDTH);
 });
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
