@@ -1,5 +1,5 @@
 // constant vars for bar dimensions
-NUM_BARS = 100;
+NUM_BARS = 150;
 BAR_WIDTH = 2;
 MIN_BAR_HEIGHT = 25;
 

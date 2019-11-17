@@ -1,44 +1,49 @@
 const mergeSortBtn = document.querySelector("#merge-sort");
 
 const merge = async (arr, start, middle, end) => {
-  setTimeout(() => {
-    console.log(`Executing Merge from ${start} to ${end}`);
-    let mergedArr = [];
-    let a = arr.slice(start, middle + 1);
-    let b = arr.slice(middle + 1, end + 1);
-    console.log(`a: ${a}, b: ${b}`);
+  console.log(`Executing Merge from ${start} to ${end}`);
+  let mergedArr = [];
+  let a = arr.slice(start, middle + 1);
+  let b = arr.slice(middle + 1, end + 1);
+  console.log(`a: ${a}, b: ${b}`);
 
-    function mergeHelper() {
-      while (a.length > 0 && b.length > 0) {
-        setTimeout(() => {
-          console.log(`1: ${a[0]}, ${b[0]}`);
-          let small = a[0] < b[0] ? a.shift() : b.shift();
-          mergedArr.push(small);
-          arr.splice(start, mergedArr.length, ...mergedArr);
-          visualizeBars(arr, BAR_WIDTH);
-        }, 10);
+  let mergePromise = new Promise((resolve, reject) => {
+    let id = requestAnimationFrame(merging);
+    function merging() {
+      if (a.length > 0 && b.length > 0) {
+        console.log(`1: ${a[0]}, ${b[0]}`);
+        let small = a[0] < b[0] ? a.shift() : b.shift();
+        mergedArr.push(small);
+        arr.splice(start, mergedArr.length, ...mergedArr);
+        visualizeBars(arr, BAR_WIDTH);
+        requestAnimationFrame(merging);
+      } else {
+        console.log(`merged array: ${[...mergedArr, ...a, ...b]}`);
+        arr.splice(start, end - start + 1, ...[...mergedArr, ...a, ...b]);
+        visualizeBars(arr, BAR_WIDTH);
+        resolve(mergedArr);
+        cancelAnimationFrame(id);
       }
     }
+  });
 
-    mergeHelper();
+  return mergePromise;
 
-    console.log(`merged array: ${[...mergedArr, ...a, ...b]}`);
-    arr.splice(start, end - start + 1, ...[...mergedArr, ...a, ...b]);
-    visualizeBars(arr, BAR_WIDTH);
+  // while (a.length > 0 && b.length > 0) {
+  //   console.log(`1: ${a[0]}, ${b[0]}`);
+  //   let small = a[0] < b[0] ? a.shift() : b.shift();
+  //   mergedArr.push(small);
+  //   arr.splice(start, mergedArr.length, ...mergedArr);
+  //   visualizeBars(arr, BAR_WIDTH);
+  // }
 
-    // console.log(a, b);
-  }, 500);
+  // console.log(`merged array: ${[...mergedArr, ...a, ...b]}`);
+  // arr.splice(start, end - start + 1, ...[...mergedArr, ...a, ...b]);
+  // visualizeBars(arr, BAR_WIDTH);
 };
 
-function pause(milliseconds) {
-  var dt = new Date();
-  while (new Date() - dt <= milliseconds) {
-    /* Do nothing */
-  }
-}
-
 let delay = 500;
-const mergeSort = async () => {
+const mergeSort = () => {
   let bars = document.querySelectorAll(".bar");
   let arr = Array.from(bars).map(elem => elem.clientHeight);
   console.log(arr);
@@ -52,7 +57,8 @@ const mergeSort = async () => {
 
     await mergeSortHelper(start, mid);
     await mergeSortHelper(mid + 1, end);
-    merge(arr, start, mid, end);
+    await merge(arr, start, mid, end);
+    return;
   }
 
   mergeSortHelper(0, arr.length - 1);
