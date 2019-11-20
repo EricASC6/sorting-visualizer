@@ -54,37 +54,68 @@ function swap(arr, i, j) {
 //   return arr;
 // }
 
-const merge = (arr, start, middle, end) => {
-  console.log("Executing Merge");
-  let mergedArr = [];
-  let a = arr.slice(start, middle + 1);
-  let b = arr.slice(middle + 1, end + 1);
-  console.log(a, b);
+// const merge = (arr, start, middle, end) => {
+//   console.log("Executing Merge");
+//   let mergedArr = [];
+//   let a = arr.slice(start, middle + 1);
+//   let b = arr.slice(middle + 1, end + 1);
+//   console.log(a, b);
 
-  while (a.length > 0 && b.length > 0) {
-    console.log(a[0], b[0]);
-    let small = a[0] < b[0] ? a.shift() : b.shift();
-    arr.splice(start, mergedArr.length, ...mergedArr);
-    mergedArr.push(small);
+//   while (a.length > 0 && b.length > 0) {
+//     console.log(a[0], b[0]);
+//     let small = a[0] < b[0] ? a.shift() : b.shift();
+//     arr.splice(start, mergedArr.length, ...mergedArr);
+//     mergedArr.push(small);
+//   }
+
+//   console.log(a, b);
+//   arr.splice(start, end - start + 1, ...[...mergedArr, ...a, ...b]);
+//   return arr;
+// };
+
+// const mergeSort = (arr, start, end) => {
+//   let mid = Math.floor((start + end) / 2);
+//   console.log(`start: ${start}, end: ${end}`);
+//   console.log("mid: " + mid);
+
+//   if (start >= end) return;
+
+//   mergeSort(arr, start, mid);
+//   mergeSort(arr, mid + 1, end);
+//   merge(arr, start, mid, end);
+
+//   console.log(arr);
+// };
+
+const partition = (arr, start, end) => {
+  let pivot = arr[start];
+
+  let i = start;
+  let j = end;
+
+  while (i <= j) {
+    if (arr[i] > pivot && arr[j] < pivot) {
+      swap(arr, i++, j--);
+      continue;
+    }
+
+    if (arr[i] <= pivot) i++;
+
+    if (arr[j] >= pivot) j--;
   }
 
-  console.log(a, b);
-  arr.splice(start, end - start + 1, ...[...mergedArr, ...a, ...b]);
-  return arr;
+  swap(arr, start, j);
+  return j;
 };
 
-const mergeSort = (arr, start, end) => {
-  let mid = Math.floor((start + end) / 2);
-  console.log(`start: ${start}, end: ${end}`);
-  console.log("mid: " + mid);
+const quickSort = (arr, start = 0, end = arr.length - 1) => {
+  if (start >= end) {
+    return;
+  }
 
-  if (start >= end) return;
-
-  mergeSort(arr, start, mid);
-  mergeSort(arr, mid + 1, end);
-  merge(arr, start, mid, end);
-
-  console.log(arr);
+  let mid = partition(arr, start, end);
+  quickSort(arr, start, mid);
+  quickSort(arr, mid + 1, end);
 };
 
 let arr = [
@@ -189,8 +220,6 @@ let arr = [
   52,
   101
 ];
-mergeSort(arr, 0, arr.length - 1);
-console.log(arr);
 
-// let sortedArr = selectionSort(arr);
-// console.log(sortedArr);
+let sortedArr = quickSort(arr);
+console.log(arr);
