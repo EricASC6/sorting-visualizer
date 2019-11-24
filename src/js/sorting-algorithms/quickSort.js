@@ -6,8 +6,8 @@ const partition = async (arr, start, end) => {
   let j = end;
 
   let partitionPromise = new Promise((resolve, reject) => {
-    // let partitionId = setInterval(partitionHelper, 1000 / 60);
-    let partitionId = requestAnimationFrame(partitionHelper);
+    let partitionId = setInterval(partitionHelper, 10);
+    // let partitionId = requestAnimationFrame(partitionHelper);
     function partitionHelper() {
       if (i <= j) {
         if (arr[i] > pivot && arr[j] < pivot) {
@@ -18,10 +18,10 @@ const partition = async (arr, start, end) => {
         if (arr[i] <= pivot) i++;
 
         if (arr[j] >= pivot) j--;
-        requestAnimationFrame(partitionHelper);
+        // requestAnimationFrame(partitionHelper);
       } else {
-        // clearInterval(partitionId);
-        cancelAnimationFrame(partitionId);
+        clearInterval(partitionId);
+        // cancelAnimationFrame(partitionId);
         swap(arr, start, j);
         visualizeBars(arr, BAR_WIDTH);
         resolve(j);

@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+:root {
+  --white: #fff;
+  --background: #121212;
+  --secondary: #5f85db;
+  --accent: #c299fc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--background);
+  color: var(--white);
+}
+
+.container {
+  margin: auto;
+  width: 90%;
+}
+
+.nav {
+  width: 100%;
+}
+
+.nav .nav-container {
+  padding: 35px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-container .title {
+  color: var(--accent);
+  font-size: 20px;
+}
+
+.nav-container .nav-btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 300px;
+  list-style: none;
+}
+
+.nav-btns li {
+  margin: 0 20px;
+}
+
+.nav-btns li a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.865);
+  font-weight: 450;
+  font-size: 18px;
+}
+
+.nav-btns .drop-down {
+  position: relative;
+}
+
+.nav-btns .drop-down #algo {
+  position: relative;
+}
+
+#algo #caret {
+  position: absolute;
+  color: var(--accent);
+  top: -1px;
+  right: -15px;
+  transition: all 0.2s;
+}
+
+#caret .fa-sort-down {
+  font-size: 15px;
+}
+
+#caret.active {
+  position: absolute;
+  transform: rotate(180deg) translateY(-5px);
+  transform-origin: center;
+}
+
+.drop-down .drop-down-list {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  list-style: none;
+  background-color: var(--secondary);
+  border-radius: 10px;
+  width: 150px;
+  min-height: 275px;
+  left: -15px;
+  top: 35px;
+  z-index: 1;
+  transition: opacity 0.2s ease;
+}
+
+.drop-down-list.drop-active {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Visualizer */
+.visualizer {
+  height: 600px;
+  width: 100vw;
+}
+
+.visualizer-container {
+  position: relative;
+  background-color: #262626;
+  height: 100%;
+  border-radius: 25px;
+  margin-top: 25px;
+  box-shadow: 0 0 50px 0 black;
+}
+
+.visualizer-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.009);
+  border-radius: 25px 0 0 25px;
+}
+
+/* Accent design */
+.accent-design {
+  position: relative;
+}
+
+.a1 {
+  position: relative;
+}
+
+.a1::before {
+  content: "";
+  position: absolute;
+  background-color: var(--secondary);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  top: 15px;
+  left: 100px;
+}

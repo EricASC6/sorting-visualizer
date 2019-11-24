@@ -7,19 +7,21 @@ const bubbleSort = () => {
   let delay = 50;
 
   for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - 1 - i; j++) {
-      setTimeout(() => {
-        let a = arr[j];
-        let b = arr[j + 1];
+    setTimeout(() => {
+      for (let j = 0; j < arr.length - 1 - i; j++) {
+        setTimeout(() => {
+          let a = arr[j];
+          let b = arr[j + 1];
 
-        if (a > b) {
-          swap(arr, j, j + 1);
-          visualizeBars(arr, BAR_WIDTH);
-        }
+          if (a > b) {
+            swap(arr, j, j + 1);
+            visualizeBars(arr, BAR_WIDTH);
+          }
 
-        // console.log(i * delay);
-      }, i * delay);
-    }
+          // console.log(i * delay);
+        }, i * delay);
+      }
+    }, i * delay);
   }
 };
 

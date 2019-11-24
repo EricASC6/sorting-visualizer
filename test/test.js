@@ -1,15 +1,21 @@
 // constant vars for bar dimensions
 NUM_BARS = 200;
 BAR_WIDTH = 2;
+MAX_BAR_HEIGHT = 500;
 MIN_BAR_HEIGHT = 5;
 
+// generates a number between min and max
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 // func that generates a sorted array
-const generateArray = (size, start, increment) => {
+const generateArray = (size, min, max) => {
   let arr = [];
-  let height = start;
   for (let i = 0; i < size; i++) {
-    arr.push(height);
-    height += increment;
+    let num = randomIntFromInterval(min, max);
+    arr.push(num);
   }
 
   return arr;
@@ -36,7 +42,7 @@ const visualizeBars = (arr, width) => {
 };
 
 newArrayBtn.addEventListener("click", () => {
-  let sortedArray = generateArray(NUM_BARS, MIN_BAR_HEIGHT, BAR_WIDTH);
+  let sortedArray = generateArray(NUM_BARS, MIN_BAR_HEIGHT, MAX_BAR_HEIGHT);
   console.log(sortedArray);
   visualizeBars(sortedArray, BAR_WIDTH);
 });
