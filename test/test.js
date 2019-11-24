@@ -1,5 +1,5 @@
 // constant vars for bar dimensions
-NUM_BARS = 200;
+NUM_BARS = 100;
 BAR_WIDTH = 2;
 MAX_BAR_HEIGHT = 500;
 MIN_BAR_HEIGHT = 5;
@@ -24,6 +24,7 @@ const generateArray = (size, min, max) => {
 // creates a sorted array and places it on the .array div
 const newArrayBtn = document.querySelector("#new-array");
 const visualizeBars = (arr, width) => {
+  console.log(arr);
   let array = document.querySelector("#array");
   if (array.innerHTML === "") {
     arr.forEach(height => {
