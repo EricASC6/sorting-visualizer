@@ -4,7 +4,7 @@
   --white: #fff;
   --background: #121212;
   --secondary: #5f85db;
-  --accent: #c299fc;
+  --accent: #ff86fc;
 }
 
 * {
@@ -26,6 +26,13 @@ body {
   width: 90%;
 }
 
+.accent {
+  color: var(--accent);
+}
+
+/* 
+  Nav-bar
+*/
 .nav {
   width: 100%;
 }
@@ -38,11 +45,49 @@ body {
 }
 
 .nav-container .title {
-  color: var(--accent);
+  color: var(--white);
   font-size: 20px;
+  display: flex;
+  position: relative;
+  align-items: center;
 }
 
-.nav-container .nav-btns {
+.nav-container .title h2 {
+  font-weight: 450;
+}
+
+.nav-container .title .bar-logo {
+  min-width: 35px;
+  height: 40px;
+  /* background-color: blue; */
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.bar-logo .line {
+  width: 6px;
+  border-radius: 5px;
+}
+
+.bar-logo :first-child {
+  height: 30px;
+  background-color: #fff629;
+}
+
+.bar-logo :nth-child(2) {
+  height: 35px;
+  background-color: #22f01e;
+}
+
+.bar-logo :last-child {
+  height: 40px;
+  background-color: #e21c1c;
+}
+
+.nav .nav-container .nav-btns {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,7 +102,7 @@ body {
 .nav-btns li a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.865);
-  font-weight: 450;
+  font-weight: 400;
   font-size: 18px;
 }
 
@@ -73,12 +118,12 @@ body {
   position: absolute;
   color: var(--accent);
   top: -1px;
-  right: -15px;
+  right: -17px;
   transition: all 0.2s;
 }
 
 #caret .fa-sort-down {
-  font-size: 15px;
+  font-size: 20px;
 }
 
 #caret.active {
@@ -123,17 +168,8 @@ body {
   border-radius: 25px;
   margin-top: 25px;
   box-shadow: 0 0 50px 0 black;
-}
-
-.visualizer-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 50%;
-  background-color: rgba(255, 255, 255, 0.009);
-  border-radius: 25px 0 0 25px;
+  background: url(https://www.annalect.com/wp-content/uploads/2017/07/06160613/marketing_algorithms_annalect.png);
+  opacity: 0.04;
 }
 
 /* Accent design */
