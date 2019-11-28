@@ -159,6 +159,7 @@ body {
 .visualizer {
   height: 600px;
   width: 100vw;
+  position: relative;
 }
 
 .visualizer-container {
@@ -168,26 +169,61 @@ body {
   border-radius: 25px;
   margin-top: 25px;
   box-shadow: 0 0 50px 0 black;
-  background: url(https://www.annalect.com/wp-content/uploads/2017/07/06160613/marketing_algorithms_annalect.png);
-  opacity: 0.04;
+  background: linear-gradient(
+      90deg,
+      rgba(24, 24, 24, 0.961) 0%,
+      rgba(28, 28, 28, 0.961) 100%
+    ),
+    url("https://www.annalect.com/wp-content/uploads/2017/07/06160613/marketing_algorithms_annalect.png");
+  background-position: center;
+  /* opacity: 0.05; */
 }
 
-/* Accent design */
-.accent-design {
-  position: relative;
+.visualizer-container .button {
+  margin: auto;
+  text-align: center;
+  transform: translateY(525px);
 }
 
-.a1 {
-  position: relative;
+.visualizer-container .button #visualize {
+  display: inline-block;
+  width: 175px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 25px;
+  box-shadow: 0px 4px 30px #000000;
+  margin: auto auto;
+  cursor: pointer;
+  background: rgba(255, 134, 252, 0.9);
+  outline: none;
+  border: none;
 }
 
-.a1::before {
+.visualizer-container::before {
   content: "";
   position: absolute;
-  background-color: var(--secondary);
-  height: 20px;
-  width: 20px;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(180deg, #999bcf 0%, rgba(255, 255, 255, 0) 100%),
+    rgba(115, 61, 239, 0.84);
   border-radius: 50%;
-  top: 15px;
-  left: 100px;
+  box-shadow: 0px 4px 50px #000000;
+  right: -15px;
+  top: -30px;
+  opacity: 1;
+}
+
+.visualizer-container::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(180deg, #cea0cf 0%, rgba(255, 255, 255, 0) 100%),
+    #ff86fc;
+  border-radius: 50%;
+  box-shadow: 0px 4px 50px #000000;
+  bottom: -30px;
+  left: -20px;
+  z-index: -1;
 }
