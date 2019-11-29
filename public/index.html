@@ -10,6 +10,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="../src/js/visuals.js" defer></script>
+    <script src="../src/js/SortingVisualizer.js" defer></script>
     <title>EC Sorting Visualizer</title>
   </head>
   <body>
@@ -24,8 +25,8 @@
           </div>
         </div>
         <ul class="nav-btns">
-          <li><a href="#">New Array</a></li>
-          <li><a href="#">Shuffle</a></li>
+          <li><a href="#" id="new-array">New Array</a></li>
+          <li><a href="#" id="shuffle">Shuffle</a></li>
           <li>
             <div class="drop-down" id="algo-drop-down">
               <div id="algo">
@@ -51,7 +52,7 @@
 
     <div class="visualizer">
       <div class="visualizer-container container">
-        <div class="visualizer-array"></div>
+        <div id="visualizer-array"></div>
         <div class="button">
           <button id="visualize">Visualize</button>
         </div>
