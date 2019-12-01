@@ -3,25 +3,28 @@
 // Merge Sort, and Quick Sort
 
 class SortingVisualizer {
-  constructor(color, speed, finishingColor, location) {
+  constructor(color, speed, finishingColor, barWidth, location) {
     this.color = color;
     this.speed = speed;
     this.finishingColor = finishingColor;
+    this.barWidth = barWidth;
     this.location = location;
     this.minHeight = 5;
     this.maxHeight = SortingVisualizer.calculateMaxHeight(this.location);
-    this.sortingAlgorithms = [
-      "bubble-sort",
-      "insertion-sort",
-      "selection-sort",
-      "heap-sort",
-      "merge-sort",
-      "quick-sort"
-    ];
+    this.visualizer = new SortingAlgorithm(this);
+    this.sortingAlgorithms = {
+      "bubble-sort": new BubbleSort(this),
+      "insertion-sort": false,
+      "selection-sort": false,
+      "heap-sort": false,
+      "merge-sort": false,
+      "quick-sort": false
+    };
+
     this.sortAlgo = null;
     this.isSorting = false;
-    this.size = SortingVisualizer.calculateSize(this.location);
-    this.array = [];
+    this.size = SortingVisualizer.calculateSize(this.location, this.barWidth);
+    this.array = this.generateRandomArray();
   }
 
   /*
@@ -38,12 +41,12 @@ class SortingVisualizer {
   }
 
   // Calculates the number of bars with regards to the dimensions of the location
-  static calculateSize(location) {
+  static calculateSize(location, barWidth) {
     let filter = /^[\d]{2,}/;
     let locationStyles = window.getComputedStyle(location);
     let locationWidth = locationStyles.getPropertyValue("width");
     let width = locationWidth.match(filter)[0];
-    let size = parseInt(width / 5);
+    let size = Math.floor(width / (5 * barWidth));
     return size;
   }
 
@@ -51,24 +54,14 @@ class SortingVisualizer {
   resize() {
     const { location } = this;
     let newMaxHeight = SortingVisualizer.calculateMaxHeight(location);
-    let newSize = SortingVisualizer.calculateSize(location);
+    let newSize = SortingVisualizer.calculateSize(location, this.barWidth);
     this.maxHeight = newMaxHeight;
     this.size = newSize;
+    this.array = this.generateRandomArray();
     return;
   }
   /*
     Dimensions Methods
-  */
-
-  /*
-    Sleep Method
-  */
-  // Delays the execution of the algorithms so we can visualize it
-  async _sleep() {
-    return new Promise(resolve => setTimeout(resolve, this.speed));
-  }
-  /*
-    Sleep Method
   */
 
   /*
@@ -94,4 +87,54 @@ class SortingVisualizer {
   /*
    Setter Methods
  */
+
+  /*
+    Generate Random Array Method
+  */
+
+  // https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
+  _randomIntFromInterval(min, max) {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  generateRandomArray() {
+    const { size, minHeight: min, maxHeight: max } = this;
+    let arr = [];
+    for (let i = 0; i < size; i++) {
+      let ran = this._randomIntFromInterval(min, max);
+      arr.push(ran);
+    }
+
+    return arr;
+  }
+  /*
+    Generate Random Array Method
+  */
+
+  /*
+    Visualize Method
+  */
+  visualize() {
+    const { visualizer } = this;
+    visualizer._visualize(this.array, this.location);
+  }
+  /*
+    Visualize Method 
+  */
+
+  /*
+    Sorting Algorithms Methods   
+  */
+  async bubbleSort() {
+    const { sortingAlgorithms, array, location } = this;
+    this.startSort();
+    await sortingAlgorithms["bubble-sort"].sort(array, location);
+    this.endSort();
+    return;
+  }
+
+  /*
+    Sorting Algorithms Methods   
+  */
 }

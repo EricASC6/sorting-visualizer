@@ -1,10 +1,12 @@
 let array = document.getElementById("visualizer-array");
-SortingVisualizer.calculateMaxHeight(array);
-SortingVisualizer.calculateSize(array);
 
-let sortVis = new SortingVisualizer("green", 10, "red", array);
+let sortVis = new SortingVisualizer("green", 5, "red", 2, array);
 console.log(sortVis);
+
+sortVis.visualize();
+sortVis.bubbleSort();
 
 window.addEventListener("resize", () => {
   sortVis.resize();
+  sortVis.visualize();
 });
