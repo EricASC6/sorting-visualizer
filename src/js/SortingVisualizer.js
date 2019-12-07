@@ -60,9 +60,6 @@ class SortingVisualizer {
     this.array = this.generateRandomArray();
     return;
   }
-  /*
-    Dimensions Methods
-  */
 
   /*
    Setter Methods
@@ -84,9 +81,6 @@ class SortingVisualizer {
   endSort() {
     this.isSorting = false;
   }
-  /*
-   Setter Methods
- */
 
   /*
     Generate Random Array Method
@@ -119,9 +113,6 @@ class SortingVisualizer {
     const { visualizer } = this;
     visualizer._visualize(this.array, this.location);
   }
-  /*
-    Visualize Method 
-  */
 
   /*
     Sorting Algorithms Methods   
@@ -133,8 +124,4 @@ class SortingVisualizer {
     this.endSort();
     return;
   }
-
-  /*
-    Sorting Algorithms Methods   
-  */
 }
