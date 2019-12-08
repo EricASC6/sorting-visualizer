@@ -14,8 +14,8 @@ class SortingVisualizer {
     this.visualizer = new SortingAlgorithm(this);
     this.sortingAlgorithms = {
       "bubble-sort": new BubbleSort(this),
-      "insertion-sort": false,
-      "selection-sort": false,
+      "insertion-sort": new InsertionSort(this),
+      "selection-sort": new SelectionSort(this),
       "heap-sort": false,
       "merge-sort": false,
       "quick-sort": false
@@ -102,9 +102,6 @@ class SortingVisualizer {
 
     return arr;
   }
-  /*
-    Generate Random Array Method
-  */
 
   /*
     Visualize Method
@@ -121,6 +118,22 @@ class SortingVisualizer {
     const { sortingAlgorithms, array, location } = this;
     this.startSort();
     await sortingAlgorithms["bubble-sort"].sort(array, location);
+    this.endSort();
+    return;
+  }
+
+  async insertionsort() {
+    const { sortingAlgorithms, array, location } = this;
+    this.startSort();
+    await sortingAlgorithms["insertion-sort"].sort(array, location);
+    this.endSort();
+    return;
+  }
+
+  async selectionSort() {
+    const { sortingAlgorithms, array, location } = this;
+    this.startSort();
+    await sortingAlgorithms["selection-sort"].sort(array, location);
     this.endSort();
     return;
   }
