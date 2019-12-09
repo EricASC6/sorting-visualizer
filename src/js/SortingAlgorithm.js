@@ -21,19 +21,14 @@ class SortingAlgorithm {
   }
 
   _visualize(array, location) {
-    if (location.innerHTML === "") {
-      array.forEach(height => {
-        let bar = document.createElement("div");
-        bar.className = "bar";
-        bar.style.width = `${this.barWidth}px`;
-        bar.style.height = `${height}px`;
-        bar.style.backgroundColor = this.color;
-        location.appendChild(bar);
-      });
-    } else {
-      array.forEach((height, i) => {
-        location.children[i].style.height = `${height}px`;
-      });
-    }
+    location.innerHTML = "";
+    array.forEach(height => {
+      let bar = document.createElement("div");
+      bar.className = "bar";
+      bar.style.width = `${this.barWidth}px`;
+      bar.style.height = `${height}px`;
+      bar.style.backgroundColor = this.color;
+      location.appendChild(bar);
+    });
   }
 }

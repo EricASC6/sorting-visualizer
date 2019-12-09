@@ -47,6 +47,7 @@ class SortingVisualizer {
     let locationWidth = locationStyles.getPropertyValue("width");
     let width = locationWidth.match(filter)[0];
     let size = Math.floor(width / (5 * barWidth));
+    console.log(size);
     return size;
   }
 
@@ -66,7 +67,7 @@ class SortingVisualizer {
  */
   setSortingAlgo(algo) {
     const { sortingAlgorithms: algos } = this;
-    if (algos.includes(algo)) this.sortAlgo = algo;
+    if (Object.keys(algos).includes(algo)) this.sortAlgo = algo;
     return;
   }
 
@@ -114,7 +115,7 @@ class SortingVisualizer {
   /*
     Sorting Algorithms Methods   
   */
-  async bubbleSort() {
+  async _bubbleSort() {
     const { sortingAlgorithms, array, location } = this;
     this.startSort();
     await sortingAlgorithms["bubble-sort"].sort(array, location);
@@ -122,19 +123,33 @@ class SortingVisualizer {
     return;
   }
 
-  async insertionsort() {
+  async _insertionsort() {
     const { sortingAlgorithms, array, location } = this;
-    this.startSort();
     await sortingAlgorithms["insertion-sort"].sort(array, location);
-    this.endSort();
-    return;
   }
 
-  async selectionSort() {
+  async _selectionSort() {
     const { sortingAlgorithms, array, location } = this;
-    this.startSort();
     await sortingAlgorithms["selection-sort"].sort(array, location);
+  }
+
+  /*
+    Main Sorting Method
+  */
+  async sort(algorithm) {
+    this.startSort();
+    this.setSortingAlgo(algorithm);
+
+    if (this.sortAlgo === null) return;
+    if (algorithm === "bubble-sort") {
+      await this._bubbleSort();
+    } else if (algorithm === "insertion-sort") {
+      await this._insertionsort();
+    } else if (algorithm === "selection-sort") {
+      await this._selectionSort();
+    }
+
+    this.clearSortingAlgo();
     this.endSort();
-    return;
   }
 }
