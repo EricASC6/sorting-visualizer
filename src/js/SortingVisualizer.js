@@ -17,7 +17,7 @@ class SortingVisualizer {
       "insertion-sort": new InsertionSort(this),
       "selection-sort": new SelectionSort(this),
       "heap-sort": false,
-      "merge-sort": false,
+      "merge-sort": new MergeSort(this),
       "quick-sort": false
     };
 
@@ -133,6 +133,11 @@ class SortingVisualizer {
     await sortingAlgorithms["selection-sort"].sort(array, location);
   }
 
+  async _mergeSort() {
+    const { sortingAlgorithms, array, location } = this;
+    await sortingAlgorithms["merge-sort"].mergeSort(array, location);
+  }
+
   /*
     Main Sorting Method
   */
@@ -140,13 +145,19 @@ class SortingVisualizer {
     this.startSort();
     this.setSortingAlgo(algorithm);
 
-    if (this.sortAlgo === null) return;
+    if (this.sortAlgo === null) {
+      this.clearSortingAlgo();
+      return;
+    }
+
     if (algorithm === "bubble-sort") {
       await this._bubbleSort();
     } else if (algorithm === "insertion-sort") {
       await this._insertionsort();
     } else if (algorithm === "selection-sort") {
       await this._selectionSort();
+    } else if (algorithm === "merge-sort") {
+      await this._mergeSort();
     }
 
     this.clearSortingAlgo();

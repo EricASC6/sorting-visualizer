@@ -1,6 +1,6 @@
 let array = document.getElementById("visualizer-array");
 
-let sortVis = new SortingVisualizer("green", 5, "red", 2, array);
+let sortVis = new SortingVisualizer("green", 1, "red", 3, array);
 console.log(sortVis);
 
 sortVis.visualize();
