@@ -18,7 +18,7 @@ class SortingVisualizer {
       "selection-sort": new SelectionSort(this),
       "heap-sort": false,
       "merge-sort": new MergeSort(this),
-      "quick-sort": false
+      "quick-sort": new QuickSort(this)
     };
 
     this.sortAlgo = null;
@@ -113,6 +113,35 @@ class SortingVisualizer {
   }
 
   /*
+    Shuffle Algorithm  
+  */
+  shuffle() {
+    let { array } = this;
+    var currentIndex = array.length,
+      randomIndex;
+
+    window.requestAnimationFrame(() => {
+      this._shuffleHelper(array, currentIndex);
+    });
+  }
+
+  _shuffleHelper(array, currentIndex) {
+    if (0 !== currentIndex) {
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      SortingAlgorithm.swap(array, currentIndex, randomIndex);
+      this.array = array;
+      this.visualize();
+      requestAnimationFrame(() => {
+        this._shuffleHelper(array, currentIndex);
+      });
+    }
+  }
+
+  /*
     Sorting Algorithms Methods   
   */
   async _bubbleSort() {
@@ -138,6 +167,11 @@ class SortingVisualizer {
     await sortingAlgorithms["merge-sort"].mergeSort(array, location);
   }
 
+  async _quickSort() {
+    const { sortingAlgorithms, array, location } = this;
+    await sortingAlgorithms["quick-sort"].sort(array, location);
+  }
+
   /*
     Main Sorting Method
   */
@@ -158,6 +192,8 @@ class SortingVisualizer {
       await this._selectionSort();
     } else if (algorithm === "merge-sort") {
       await this._mergeSort();
+    } else if (algorithm === "quick-sort") {
+      await this._quickSort();
     }
 
     this.clearSortingAlgo();

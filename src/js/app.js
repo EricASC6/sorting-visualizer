@@ -1,4 +1,5 @@
 let array = document.getElementById("visualizer-array");
+const shuffleBtn = document.getElementById("shuffle");
 
 let sortVis = new SortingVisualizer("green", 1, "red", 3, array);
 console.log(sortVis);
@@ -17,4 +18,8 @@ algorithmsBtns.forEach(btn => {
     let algo = e.target.id;
     await sortVis.sort(algo);
   });
+});
+
+shuffleBtn.addEventListener("click", () => {
+  sortVis.shuffle();
 });

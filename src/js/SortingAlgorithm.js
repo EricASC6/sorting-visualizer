@@ -16,7 +16,7 @@ class SortingAlgorithm {
     arr[j] = temp;
   }
 
-  _sleep() {
+  async _sleep() {
     return new Promise(resolve => setTimeout(resolve, this.speed));
   }
 
