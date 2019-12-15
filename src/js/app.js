@@ -1,7 +1,15 @@
 let array = document.getElementById("visualizer-array");
 const shuffleBtn = document.getElementById("shuffle");
 
-let sortVis = new SortingVisualizer("green", 1, "red", 3, array);
+let sortVis = new SortingVisualizer(
+  "green",
+  10,
+  "red",
+  3,
+  array,
+  "blue",
+  "cyan"
+);
 console.log(sortVis);
 
 sortVis.visualize();

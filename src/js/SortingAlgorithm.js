@@ -33,7 +33,10 @@ class SortingAlgorithm {
     } else {
       Array.from(location.children).forEach((bar, i) => {
         bar.style.height = `${array[i]}px`;
+        bar.style.backgroundColor = this.color;
       });
     }
   }
+
+  _comparison(col1, col2, indx1, indx2) {}
 }

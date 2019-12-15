@@ -3,12 +3,22 @@
 // Merge Sort, and Quick Sort
 
 class SortingVisualizer {
-  constructor(color, speed, finishingColor, barWidth, location) {
+  constructor(
+    color,
+    speed,
+    finishingColor,
+    barWidth,
+    location,
+    comparisonColor1,
+    comparisonColor2
+  ) {
     this.color = color;
     this.speed = speed;
     this.finishingColor = finishingColor;
     this.barWidth = barWidth;
     this.location = location;
+    this.comparisonColor1 = comparisonColor1;
+    this.comparisonColor2 = comparisonColor2;
     this.minHeight = 5;
     this.maxHeight = SortingVisualizer.calculateMaxHeight(this.location);
     this.visualizer = new SortingAlgorithm(this);
@@ -16,7 +26,7 @@ class SortingVisualizer {
       "bubble-sort": new BubbleSort(this),
       "insertion-sort": new InsertionSort(this),
       "selection-sort": new SelectionSort(this),
-      "heap-sort": false,
+      "heap-sort": new HeapSort(this),
       "merge-sort": new MergeSort(this),
       "quick-sort": new QuickSort(this)
     };
@@ -142,14 +152,30 @@ class SortingVisualizer {
   }
 
   /*
+    Finisher Method  
+  */
+  finish() {
+    const { finishingColor } = this;
+    window.requestAnimationFrame(() => {
+      this._finisherHelper(finishingColor, 0);
+    });
+  }
+
+  _finisherHelper(color, indx) {
+    if (indx < this.array.length) {
+      this.location.children[indx].style.backgroundColor = color;
+      window.requestAnimationFrame(() => {
+        this._finisherHelper(color, ++indx);
+      });
+    }
+  }
+
+  /*
     Sorting Algorithms Methods   
   */
   async _bubbleSort() {
     const { sortingAlgorithms, array, location } = this;
-    this.startSort();
     await sortingAlgorithms["bubble-sort"].sort(array, location);
-    this.endSort();
-    return;
   }
 
   async _insertionsort() {
@@ -164,7 +190,7 @@ class SortingVisualizer {
 
   async _mergeSort() {
     const { sortingAlgorithms, array, location } = this;
-    await sortingAlgorithms["merge-sort"].mergeSort(array, location);
+    await sortingAlgorithms["merge-sort"].sort(array, location);
   }
 
   async _quickSort() {
@@ -172,6 +198,10 @@ class SortingVisualizer {
     await sortingAlgorithms["quick-sort"].sort(array, location);
   }
 
+  async _heapSort() {
+    const { sortingAlgorithms, array, location } = this;
+    await sortingAlgorithms["heap-sort"].heapSort(array, location);
+  }
   /*
     Main Sorting Method
   */
@@ -194,8 +224,11 @@ class SortingVisualizer {
       await this._mergeSort();
     } else if (algorithm === "quick-sort") {
       await this._quickSort();
+    } else if (algorithm === "heap-sort") {
+      await this._heapSort();
     }
 
+    this.finish();
     this.clearSortingAlgo();
     this.endSort();
   }
