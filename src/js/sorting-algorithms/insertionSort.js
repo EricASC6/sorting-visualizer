@@ -5,6 +5,17 @@ class InsertionSort extends SortingAlgorithm {
 
       while (arr[j] < arr[j - 1]) {
         await this._sleep();
+
+        Comparison.compare(
+          j,
+          j - 1,
+          this.comparisonColor1,
+          this.comparisonColor2,
+          this.location
+        );
+
+        await this._sleep();
+
         SortingAlgorithm.swap(arr, j, j - 1);
         this._visualize(arr, location);
         this.sortingVisualizerObject.array = arr;

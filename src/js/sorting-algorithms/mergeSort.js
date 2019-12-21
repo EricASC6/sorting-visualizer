@@ -5,6 +5,28 @@ class MergeSort extends SortingAlgorithm {
     let b = arr.slice(middle + 1, end + 1);
 
     let mergePromise = new Promise(async resolve => {
+      for (let i = start; i < middle + 1; i++) {
+        await this._sleep();
+        Comparison.compare(
+          i,
+          i,
+          this.comparisonColor1,
+          this.comparisonColor1,
+          location
+        );
+      }
+
+      for (let i = middle + 1; i < end + 1; i++) {
+        await this._sleep();
+        Comparison.compare(
+          i,
+          i,
+          this.comparisonColor2,
+          this.comparisonColor2,
+          location
+        );
+      }
+
       while (a.length > 0 && b.length > 0) {
         await this._sleep();
         let small = a[0] < b[0] ? a.shift() : b.shift();

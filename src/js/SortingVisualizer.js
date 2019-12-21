@@ -35,6 +35,7 @@ class SortingVisualizer {
     this.isSorting = false;
     this.size = SortingVisualizer.calculateSize(this.location, this.barWidth);
     this.array = this.generateRandomArray();
+    this.resized = false;
   }
 
   /*
@@ -57,7 +58,7 @@ class SortingVisualizer {
     let locationWidth = locationStyles.getPropertyValue("width");
     let width = locationWidth.match(filter)[0];
     let size = Math.floor(width / (5 * barWidth));
-    console.log(size);
+    console.log("Size: " + size);
     return size;
   }
 
@@ -69,7 +70,7 @@ class SortingVisualizer {
     this.maxHeight = newMaxHeight;
     this.size = newSize;
     this.array = this.generateRandomArray();
-    return;
+    this.resized = true;
   }
 
   /*
@@ -118,8 +119,7 @@ class SortingVisualizer {
     Visualize Method
   */
   visualize() {
-    const { visualizer } = this;
-    visualizer._visualize(this.array, this.location);
+    this.visualizer._visualize(this.array, this.location);
   }
 
   /*
@@ -171,39 +171,7 @@ class SortingVisualizer {
   }
 
   /*
-    Sorting Algorithms Methods   
-  */
-  async _bubbleSort() {
-    const { sortingAlgorithms, array, location } = this;
-    await sortingAlgorithms["bubble-sort"].sort(array, location);
-  }
-
-  async _insertionsort() {
-    const { sortingAlgorithms, array, location } = this;
-    await sortingAlgorithms["insertion-sort"].sort(array, location);
-  }
-
-  async _selectionSort() {
-    const { sortingAlgorithms, array, location } = this;
-    await sortingAlgorithms["selection-sort"].sort(array, location);
-  }
-
-  async _mergeSort() {
-    const { sortingAlgorithms, array, location } = this;
-    await sortingAlgorithms["merge-sort"].sort(array, location);
-  }
-
-  async _quickSort() {
-    const { sortingAlgorithms, array, location } = this;
-    await sortingAlgorithms["quick-sort"].sort(array, location);
-  }
-
-  async _heapSort() {
-    const { sortingAlgorithms, array, location } = this;
-    await sortingAlgorithms["heap-sort"].heapSort(array, location);
-  }
-  /*
-    Main Sorting Method
+    Sort method
   */
   async sort(algorithm) {
     this.startSort();
@@ -214,19 +182,7 @@ class SortingVisualizer {
       return;
     }
 
-    if (algorithm === "bubble-sort") {
-      await this._bubbleSort();
-    } else if (algorithm === "insertion-sort") {
-      await this._insertionsort();
-    } else if (algorithm === "selection-sort") {
-      await this._selectionSort();
-    } else if (algorithm === "merge-sort") {
-      await this._mergeSort();
-    } else if (algorithm === "quick-sort") {
-      await this._quickSort();
-    } else if (algorithm === "heap-sort") {
-      await this._heapSort();
-    }
+    await this.sortingAlgorithms[algorithm].sort(this.array, this.location);
 
     this.finish();
     this.clearSortingAlgo();

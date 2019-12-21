@@ -4,7 +4,22 @@ class SelectionSort extends SortingAlgorithm {
       let min = i;
       for (let j = i + 1; j < arr.length; j++) {
         await this._sleep();
+        Comparison.compare(
+          i,
+          j,
+          this.comparisonColor1,
+          this.comparisonColor2,
+          this.location
+        );
+        await this._sleep();
         if (arr[min] > arr[j]) min = j;
+        Comparison.compare(
+          i,
+          j,
+          this.comparisonColor1,
+          this.color,
+          this.location
+        );
       }
       SortingAlgorithm.swap(arr, i, min);
       this.sortingVisualizerObject.array = arr;

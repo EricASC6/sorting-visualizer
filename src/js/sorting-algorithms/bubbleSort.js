@@ -6,6 +6,15 @@ class BubbleSort extends SortingAlgorithm {
 
         let a = arr[j];
         let b = arr[j + 1];
+        Comparison.compare(
+          j,
+          j + 1,
+          this.comparisonColor1,
+          this.comparisonColor2,
+          location
+        );
+
+        await this._sleep();
 
         if (a > b) SortingAlgorithm.swap(arr, j, j + 1);
         this.sortingVisualizerObject.array = arr;

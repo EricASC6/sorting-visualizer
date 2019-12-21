@@ -7,6 +7,16 @@ class HeapSort extends SortingAlgorithm {
 
     if (data[largest] > node) {
       await this._sleep();
+
+      Comparison.compare(
+        indx,
+        largest,
+        this.comparisonColor1,
+        this.comparisonColor2,
+        location
+      );
+
+      await this._sleep();
       SortingAlgorithm.swap(data, indx, largest);
       indx = largest;
       this._visualize(data, location);
@@ -23,7 +33,7 @@ class HeapSort extends SortingAlgorithm {
     }
   }
 
-  async heapSort(arr, location) {
+  async sort(arr, location) {
     let size = arr.length;
     let sorted = [];
     for (let i = 0; i < size; i++) {

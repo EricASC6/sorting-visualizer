@@ -6,6 +6,14 @@ class QuickSort extends SortingAlgorithm {
     let partitionPromise = new Promise(async resolve => {
       while (start <= end) {
         await this._sleep();
+        Comparison.compare(
+          start,
+          end,
+          this.comparisonColor1,
+          this.comparisonColor2,
+          location
+        );
+        await this._sleep();
         if (arr[start] > arr[pivot] && arr[end] < arr[pivot]) {
           SortingAlgorithm.swap(arr, start, end);
           this.sortingVisualizerObject.array = arr;
@@ -15,6 +23,7 @@ class QuickSort extends SortingAlgorithm {
 
         if (arr[start] <= arr[pivot]) start++;
         if (arr[end] >= arr[pivot]) end--;
+        this._visualize(arr, location);
       }
 
       SortingAlgorithm.swap(arr, pivot, end);
