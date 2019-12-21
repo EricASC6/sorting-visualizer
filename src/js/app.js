@@ -2,6 +2,7 @@
 const array = document.getElementById("visualizer-array");
 const shuffleBtn = document.getElementById("shuffle");
 const newArrayBtn = document.getElementById("new-array");
+const visualizeBtn = document.getElementById("visualize");
 
 // Current Sorting Algorithm
 let sortAlgo = null;
@@ -27,9 +28,9 @@ window.addEventListener("resize", () => {
 // Algorithms Btn
 let algorithmsBtns = document.querySelectorAll("#sorting-algo-drop-down");
 algorithmsBtns.forEach(btn => {
-  btn.addEventListener("click", async e => {
+  btn.addEventListener("click", e => {
     let algo = e.target.id;
-    await sortVis.sort(algo);
+    sortAlgo = algo;
   });
 });
 
@@ -42,4 +43,12 @@ shuffleBtn.addEventListener("click", () => {
 newArrayBtn.addEventListener("click", () => {
   sortVis.array = sortVis.generateRandomArray();
   sortVis.visualize();
+});
+
+// Visualize Btn
+visualizeBtn.addEventListener("click", async () => {
+  if (sortAlgo) {
+    await sortVis.sort(sortAlgo);
+    sortAlgo = null;
+  }
 });
