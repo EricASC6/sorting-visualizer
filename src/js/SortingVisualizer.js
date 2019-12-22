@@ -47,7 +47,7 @@ class SortingVisualizer {
     let locationStyles = window.getComputedStyle(location);
     let locationHeight = locationStyles.getPropertyValue("height");
     let height = locationHeight.match(filter)[0];
-    let maxHeight = parseFloat(height) - 50;
+    let maxHeight = parseFloat(height) - 70;
     return maxHeight;
   }
 

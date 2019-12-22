@@ -176,7 +176,10 @@ body {
     ),
     url("https://www.annalect.com/wp-content/uploads/2017/07/06160613/marketing_algorithms_annalect.png");
   background-position: center;
-  /* opacity: 0.05; */
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0.05; */
 }
 
 .visualizer-container #visualizer-array {
@@ -196,7 +199,7 @@ body {
 .visualizer-container .button {
   margin: auto;
   text-align: center;
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 .visualizer-container .button #visualize {
@@ -211,7 +214,6 @@ body {
   background: rgba(255, 134, 252, 0.9);
   outline: none;
   border: none;
-  transform: translateY(-10px);
 }
 
 .visualizer-container::before {
@@ -242,9 +244,13 @@ body {
   z-index: -1;
 }
 
-.visualizer-container #algo {
+.visualizer-container #current-algo {
   position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateX(50%), translateY(50%);
+  width: 400px;
+  top: 10px;
+  left: 50%;
+  margin-left: -200px;
+  text-align: center;
+  font-size: 30px;
+  background-color: transparent !important;
 }

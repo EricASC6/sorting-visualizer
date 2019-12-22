@@ -29,6 +29,7 @@ class HeapSort extends SortingAlgorithm {
     let size = end;
     let parent = Math.floor((size - 1) / 2);
     for (let i = parent; i >= 0; i--) {
+      await this._sleep();
       await this._siftDown(data, data[i], i, size, location, sorted);
     }
   }
@@ -38,6 +39,7 @@ class HeapSort extends SortingAlgorithm {
     let sorted = [];
     for (let i = 0; i < size; i++) {
       await this._heapify(arr, location, sorted);
+      await this._sleep();
       sorted.unshift(arr.shift());
       this._visualize([...arr, ...sorted], location);
       this.sortingVisualizerObject.array = [...arr, ...sorted];

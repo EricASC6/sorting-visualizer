@@ -29,8 +29,10 @@ window.addEventListener("resize", () => {
 let algorithmsBtns = document.querySelectorAll("#sorting-algo-drop-down");
 algorithmsBtns.forEach(btn => {
   btn.addEventListener("click", e => {
+    let title = document.getElementById("current-algo");
     let algo = e.target.id;
     sortAlgo = algo;
+    title.innerHTML = `<h1 id="current-algo">${sortAlgo.toUpperCase()}</h1>`;
   });
 });
 
