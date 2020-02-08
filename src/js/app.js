@@ -3,7 +3,6 @@ const array = document.getElementById("visualizer-array");
 const shuffleBtn = document.getElementById("shuffle");
 const newArrayBtn = document.getElementById("new-array");
 const visualizeBtn = document.getElementById("visualize");
-const compareBtn = document.getElementById("compare");
 
 // Current Sorting Algorithm
 let sortAlgo = null;
